@@ -1,0 +1,35 @@
+[project]
+name = "kuznets-environmental"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "Juliette Bornier", email = "juliette.bornier.3110@gmail.com" }
+]
+dependencies = [
+    "pandas>=2.2.2",
+    "pydeck>=0.9.1",
+    "dbnomics>=1.2.5",
+    "plotly>=5.22.0",
+    "streamlit>=1.36.0",
+    "statsmodels>=0.14.2",
+    "numpy>=2.0.0",
+    "importlib>=1.0.4",
+    "scikit-learn>=1.5.1",
+    "streamlit-option-menu>=0.3.13",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = ['ruff']
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/kuznets_environmental"]
