@@ -1,9 +1,19 @@
-import streamlit as st
 import importlib
-from data_loader import load_data_depletion, merge_country_depletion, load_data_greenhouse, merge_country_greenhouse
-from charts_creator import plot_kuznets_curve_depletion, plot_kutznet_curve_greenhouse, plot_greenhouse
 
+import streamlit as st
+from charts_creator import (
+    plot_greenhouse,
+    plot_kutznet_curve_greenhouse,
+    plot_kuznets_curve_depletion,
+)
+from data_loader import (
+    load_data_depletion,
+    load_data_greenhouse,
+    merge_country_depletion,
+    merge_country_greenhouse,
+)
 from streamlit_option_menu import option_menu
+
 
 def main():
     package_dir = importlib.resources.files("kuznets_environmental")
@@ -108,5 +118,6 @@ def main():
 
     if selected == "DBnomics":
         st.write("Visit DBnomics by clicking [here](https://db.nomics.world)")
+        
 if __name__ == "__main__":
     main()
