@@ -1,7 +1,7 @@
 [project]
 name = "kuznets-environmental"
 version = "0.1.0"
-description = "Add your description here"
+description = "Kuznets Environmental Curve dashboard with DBnomics data"
 authors = [
     { name = "Juliette Bornier", email = "juliette.bornier.3110@gmail.com" }
 ]
