@@ -88,7 +88,7 @@ def main():
         if country:
             fig = plot_kuznets_curve_depletion(merged_dfs[country], country)
             st.plotly_chart(fig)
-    
+
     if selected == "Greenhouse Gas Emission":
         df_gdp, df_green = load_data_greenhouse()
         merged_newdfs = merge_country_greenhouse((df_gdp, df_green))
@@ -106,7 +106,7 @@ def main():
         fig = plot_greenhouse(merged_newdfs)
         st.plotly_chart(fig)
 
-    if selected == "Sources": 
+    if selected == "Sources":
         st.write(
             "\n"
             "GDP per capita : [link](https://db.nomics.world/WB/WDI?dimensions=%7B\"indicator\"%3A%5B\"NY.GDP.PCAP.KD\"%5D%7D&tab=list)\n"
@@ -118,6 +118,6 @@ def main():
 
     if selected == "DBnomics":
         st.write("Visit DBnomics by clicking [here](https://db.nomics.world)")
-        
+
 if __name__ == "__main__":
     main()
