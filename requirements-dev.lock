@@ -44,8 +44,6 @@ idna==3.7
     # via anyio
     # via httpx
     # via requests
-importlib==1.0.4
-    # via kuznets-environmental
 jinja2==3.1.4
     # via altair
     # via pydeck

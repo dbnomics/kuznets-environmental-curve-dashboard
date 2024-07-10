@@ -13,7 +13,6 @@ dependencies = [
     "streamlit>=1.36.0",
     "statsmodels>=0.14.2",
     "numpy>=2.0.0",
-    "importlib>=1.0.4",
     "scikit-learn>=1.5.1",
     "streamlit-option-menu>=0.3.13",
 ]
