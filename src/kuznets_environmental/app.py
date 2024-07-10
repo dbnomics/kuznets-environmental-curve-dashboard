@@ -29,7 +29,7 @@ def main():
             st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
-    local_css("styles.css")
+    local_css(str(package_dir / "styles.css"))
     st.markdown(
         """
         <style>
