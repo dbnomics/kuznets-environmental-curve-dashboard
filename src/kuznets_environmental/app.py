@@ -28,7 +28,6 @@ def main():
         with open(file_name) as f:
             st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-
     local_css(str(package_dir / "styles.css"))
     st.markdown(
         """
@@ -52,9 +51,20 @@ def main():
     with st.sidebar:
         selected = option_menu(
             menu_title="Menu",
-            options=["Explanations", "Natural Resource Depletion",
-                     "Greenhouse Gas Emission","Greenhouse Gas Emission for all countries" ,"Sources", "DBnomics"],
-            icons=["book", "bar-chart","bar-chart","bar-chart", "paperclip", "search"],
+            options=[
+                "Explanations",
+                "Natural Resource Depletion",
+                "Greenhouse Gas Emission",
+                "Greenhouse Gas Emission for all countries",
+                "Sources",
+            ],
+            icons=[
+                "book",
+                "bar-chart",
+                "bar-chart",
+                "bar-chart",
+                "search",
+            ],
             menu_icon=":",
             default_index=0,
         )
@@ -83,7 +93,9 @@ def main():
         df_gdp, df_depl = load_data_depletion()
         merged_dfs = merge_country_depletion((df_gdp, df_depl))
 
-        country = st.selectbox("Select a country for Natural Resource Depletion", list(merged_dfs.keys()))
+        country = st.selectbox(
+            "Select a country for Natural Resource Depletion", list(merged_dfs.keys())
+        )
 
         if country:
             fig = plot_kuznets_curve_depletion(merged_dfs[country], country)
@@ -93,7 +105,9 @@ def main():
         df_gdp, df_green = load_data_greenhouse()
         merged_newdfs = merge_country_greenhouse((df_gdp, df_green))
 
-        country = st.selectbox("Select a country for Greenhouse Gas Emission", list(merged_newdfs.keys()))
+        country = st.selectbox(
+            "Select a country for Greenhouse Gas Emission", list(merged_newdfs.keys())
+        )
 
         if country:
             fig = plot_kutznet_curve_greenhouse(merged_newdfs[country], country)
@@ -107,17 +121,21 @@ def main():
         st.plotly_chart(fig)
 
     if selected == "Sources":
+        st.subheader("**Data**")
         st.write(
             "\n"
-            "GDP per capita : [link](https://db.nomics.world/WB/WDI?dimensions=%7B\"indicator\"%3A%5B\"NY.GDP.PCAP.KD\"%5D%7D&tab=list)\n"
+            '- [GDP per capita](https://db.nomics.world/WB/WDI?dimensions=%7B"indicator"%3A%5B"NY.GDP.PCAP.KD"%5D%7D&tab=list)\n'
             "\n"
-            "Natural Resource depletion : [link](https://db.nomics.world/WB/WDI?dimensions=%7B\"indicator\"%3A%5B\"NY.ADJ.DRES.GN.ZS\"%5D%7D&tab=list)\n"
+            '- [Natural Resource depletion](https://db.nomics.world/WB/WDI?dimensions=%7B"indicator"%3A%5B"NY.ADJ.DRES.GN.ZS"%5D%7D&tab=list)\n'
             "\n"
-            "Greenhouse gas emission : [link](https://db.nomics.world/WB/WDI?dimensions=%7B\"indicator\"%3A%5B\"EN.ATM.GHGT.KT.CE\"%5D%7D&tab=list)"
+            '- [Greenhouse gas emission](https://db.nomics.world/WB/WDI?dimensions=%7B"indicator"%3A%5B"EN.ATM.GHGT.KT.CE"%5D%7D&tab=list)'
         )
+        st.markdown("---")
+        st.write(
+            "[Source Code](https://github.com/dbnomics/kuznets-environmental-curve-dashboard)"
+        )
+        st.write("[DBnomics](https://db.nomics.world)")
 
-    if selected == "DBnomics":
-        st.write("Visit DBnomics by clicking [here](https://db.nomics.world)")
 
 if __name__ == "__main__":
     main()
