@@ -56,7 +56,7 @@ def plot_kuznets_curve_depletion(df, country):
             y=y_line,
             mode='lines',
             name='Trend Line',
-            line=dict(color='Deeppink', width=2)
+            line=dict(color='limegreen', width=2)
         )
     )
 
@@ -79,7 +79,7 @@ def plot_kutznet_curve_greenhouse(df, country):
         title=f"Kutznet environmental curve for {country} : Greenhouse Gas Emission",
         labels={
             "gdp per capita": "GDP per capita",
-            "greenhouse emission": "Greenhouse Gas emission (%)",
+            "greenhouse emission": "Greenhouse Gas emission (kt of CO2 equivalent)",
         },
         custom_data=["date", "greenhouse emission", "gdp per capita"],
     )
@@ -95,6 +95,7 @@ def plot_kutznet_curve_greenhouse(df, country):
         marker=dict(size=10, symbol="circle-open-dot"),
         selector=dict(mode="markers")
     )
+    fig.update_layout(height = 700)
      # Polynomial Regression
     poly_features = PolynomialFeatures(degree=3)
     X_poly = poly_features.fit_transform(df[["gdp per capita"]])
@@ -111,7 +112,7 @@ def plot_kutznet_curve_greenhouse(df, country):
             y=y_line,
             mode='lines',
             name='Trend Line',
-            line=dict(color='Deeppink', width=2)
+            line=dict(color='limegreen', width=2)
         )
     )
 
@@ -131,8 +132,8 @@ def plot_greenhouse(merged_newdfs):
         color="country_x",
         title="Greenhouse Gas Emissions Over Time for All Countries",
         labels={
-            "original_period": "Year",
-            "greenhouse emission": "Greenhouse Gas Emission (%)",
+            "original_period": "Years",
+            "greenhouse emission": "Greenhouse Gas Emission (kt of CO2 equivalent)",
             "country_x" : "Country" 
         },
 
@@ -148,6 +149,6 @@ def plot_greenhouse(merged_newdfs):
             ]
         )
     )
-
+    fig.update_layout(height = 700)
     return fig
 
