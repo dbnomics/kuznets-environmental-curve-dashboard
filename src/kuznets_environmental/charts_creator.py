@@ -23,7 +23,7 @@ def plot_kuznets_curve_depletion(df, country):
         title=f"Kuznets environmental curve for {country}: Natural Resources Depletion",
         labels={
             "gdp per capita": "GDP per capita",
-            "natural depletion": "Natural resources depletion (%)",
+            "natural depletion": "Natural resources depletion (% of GNI)",
         },
         custom_data=["date", "natural depletion", "gdp per capita"],
     )
