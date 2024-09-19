@@ -46,7 +46,6 @@ def main():
         unsafe_allow_html=True,
     )
 
-    st.markdown("---")
 
     with st.sidebar:
         selected = option_menu(
@@ -95,26 +94,44 @@ def main():
         df_gdp, df_depl = load_data_depletion()
         merged_dfs = merge_country_depletion((df_gdp, df_depl))
 
-        country = st.selectbox(
-            "Select a country for Natural Resource Depletion", list(merged_dfs.keys())
-        )
+        tab1, tab2 = st.tabs([":bar_chart:",":file_folder:"])
+        with tab1: 
+            country = st.selectbox(
+                "Select a country for Natural Resource Depletion", list(merged_dfs.keys())
+            )
 
-        if country:
-            fig = plot_kuznets_curve_depletion(merged_dfs[country], country)
-            st.plotly_chart(fig)
-
+            if country:
+                fig = plot_kuznets_curve_depletion(merged_dfs[country], country)
+                st.plotly_chart(fig)
+        with tab2:
+            col1, col2 = st.columns(2)
+            with col1: 
+                st.subheader("Dataset GDP")
+                st.write(df_gdp)
+            with col2: 
+                st.subheader("Dataset Depletion")
+                st.write(df_depl)
     if selected == "Greenhouse Gas Emission":
         df_gdp, df_green = load_data_greenhouse()
         merged_newdfs = merge_country_greenhouse((df_gdp, df_green))
 
-        country = st.selectbox(
-            "Select a country for Greenhouse Gas Emission", list(merged_newdfs.keys())
-        )
+        tab1, tab2 = st.tabs([":bar_chart:",":file_folder:"])
+        with tab1:
+            country = st.selectbox(
+                "Select a country for Greenhouse Gas Emission", list(merged_newdfs.keys())
+            )
 
-        if country:
-            fig = plot_kutznet_curve_greenhouse(merged_newdfs[country], country)
-            st.plotly_chart(fig)
-
+            if country:
+                fig = plot_kutznet_curve_greenhouse(merged_newdfs[country], country)
+                st.plotly_chart(fig)
+        with tab2: 
+            col1, col2 = st.columns(2)
+            with col1: 
+                st.subheader("Dataset GDP")
+                st.write(df_gdp)
+            with col2: 
+                st.subheader("Dataset Greenhouse Gas Emission")
+                st.write(df_green)
     if selected == "Greenhouse Gas Emission for all countries":
         df_gdp, df_green = load_data_greenhouse()
         merged_newdfs = merge_country_greenhouse((df_gdp, df_green))
